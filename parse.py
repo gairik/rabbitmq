@@ -9,6 +9,7 @@ Options:
 
 from docopt import docopt
 import json
+import os
 
 def parse(trace,pred):
     f = open(trace,"r")
@@ -34,14 +35,21 @@ def parse_aux(parent,child,pred):
 
 
 if __name__ == '__main__':
+
+
     arguments = docopt(__doc__, version='my prog 2.0')
     path =  (arguments.get("<x>"))
     pred = (arguments.get("<y>"))
 
     links=[]
     parse(path,pred)
+    t =  os.getcwd()
+
+
+    #os.mkdirs(res )
+    path = path + "_"+ pred + "_filtered"
 
     obj =  json.dumps(links)
-    file = open("result.json", 'w')
+    file = open(path, 'w')
     file.write(obj)
     file.close()

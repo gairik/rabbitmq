@@ -16,8 +16,8 @@ rabbitmqctl trace_on
 rabbitmqctl add_user openstack demo
 rabbitmqctl set_user_tags openstack administrator
 rabbitmqctl set_permissions -p / openstack ".*" ".*" ".*"
-git clone https://gitlab.com/gairik/ENOS
-cd ENOS
+git clone https://gitlab.inria.fr/apollo/osp-parse
+cd osp-parse
 python feed.py
 
 

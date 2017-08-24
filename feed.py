@@ -4,6 +4,7 @@ import time, sys
 import json
 import io
 import os
+import datetime
 
 
 creds = pika.PlainCredentials('openstack', 'demo')
@@ -39,7 +40,10 @@ def callback(ch,method,properties,body):
     #messages_dict.update({"Queue_name":queue_name})
     messages_dict.update({"Exchange":method.routing_key})
     messages_dict.update({"Exchange_Name":method.exchange})
-    messages_dict.update({"TimeStamp":properties.timestamp})
+    time = datetime.datetime.now()
+    time = str(time)
+
+    messages_dict.update({"TimeStamp":time})
     messages_dict.update({"Correlation_id":properties.correlation_id})
 
     print ("-------------")
@@ -48,7 +52,7 @@ def callback(ch,method,properties,body):
     print ("[Y] Queue_name :: %r "% queue_name)
     print ("[Y] Exchange -  :: %r "% method.routing_key)
     print ("[Y] Exchange_Name %r:: "% method.exchange)
-    print ("[Y] TimeStamp %r:: "% properties.timestamp)
+    print ("[Y] TimeStamp %r:: "% time)
     print ("[Y] Correlation_id %r:: "% properties.correlation_id)
     print ("[HeaderInfo]")
     headlist = properties.headers

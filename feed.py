@@ -5,10 +5,11 @@ import json
 import io
 import os
 import datetime
+import socket
 
-
+ipofmachine = socket.gethostbyname(socket.gethostname())
 creds = pika.PlainCredentials('openstack', 'demo')
-param = pika.ConnectionParameters('192.168.142.127',
+param = pika.ConnectionParameters(ipofmachine,
 				  5672,
 			          '/',
 				  creds)

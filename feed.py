@@ -53,7 +53,7 @@ def callback(ch,method,properties,body):
     print ("[Y] Queue_name :: %r "% queue_name)
     print ("[Y] Exchange -  :: %r "% method.routing_key)
     print ("[Y] Exchange_Name %r:: "% method.exchange)
-    print ("[Y] TimeStamp %r:: "% time)
+    print ("[Y] TimeStamp :: %r "% time)
     print ("[Y] Correlation_id %r:: "% properties.correlation_id)
     print ("[HeaderInfo]")
     headlist = properties.headers

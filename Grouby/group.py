@@ -19,7 +19,7 @@ newlist = sorted(data, key=key_fun)
 filterlist = []
 aa = []
 subgroup = {}
-finaldict= {}
+finaldict= []
 c= 0
 
 #the Connection needs to be changed according to the Group by key word
@@ -29,18 +29,17 @@ for key, group in itertools.groupby(newlist, key_fun):
 	       subgroup[key].append(m)
 	
 for i in subgroup.keys():
-	frst = i
-	message=  subgroup[frst]
-	no_of_msg  = len(subgroup[frst])
-	finaldict['filter'] = frst
-	finaldict['message'] = message
-	finaldict['length'] = no_of_msg	
-	#aa.append((frst,message,no_of_msg))
+	message=  subgroup[i]	
+	no_of_msg  = len(subgroup[i])
+	finaldict.append( { 'key':  i,
+			'message': message,
+			'length': no_of_msg })
 
 
+
+print finaldict
 with open("Final.json", mode='w') as f:
             f.write(json.dumps(finaldict, indent=2))
-
 
 #print aa[0]
 
